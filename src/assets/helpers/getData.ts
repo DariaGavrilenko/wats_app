@@ -18,7 +18,7 @@ export const getApiTokenInstance = () => {
     } 
 }
 
- export const getStatusImg = (status: string) => {
+ export const getStatusImg = (status: string | undefined) => {
     switch (status) {
         case 'loading':
             return 'https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif';

@@ -3,10 +3,11 @@ import s from './SideMenu.module.css'
 import SideMenuHeader from './SideMenuHeader'
 import SideMenuSearch from './SideMenuSearch'
 import SideMenuContactItem from './SideMenuContactItem'
+import { Chat } from '../App'
 
 type SideMenuPropsType = {
     createChat: (number: string) => void,
-    chats: any[]
+    chats: Chat[]
     setActiveChat: (number: string) => void
 }
 

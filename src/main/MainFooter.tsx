@@ -9,19 +9,16 @@ import { getApiTokenInstance,  getIdInstance } from '../assets/helpers/getData'
 
 type PropsType = {
     activeChat: string
-    messages: any[],
-    setMessages: (messages: any[]) => void
     onSendMessage: (message: string, idMessage: string) => void
 }
 
-const MainFooter = ({ setMessages, messages, onSendMessage, activeChat }: PropsType) => {
+const MainFooter = ({ onSendMessage, activeChat }: PropsType) => {
     const [message, setMessage] = useState('')
 
     const onSendMessagePress = () => {
         fetch(`https://api.green-api.com/waInstance${getIdInstance()}/SendMessage/${getApiTokenInstance()}`, {
             method: 'POST',
             body: JSON.stringify({
-                //@ts-ignore
                 chatId: `${activeChat}@c.us`,
                 message: message
             })

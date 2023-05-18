@@ -6,9 +6,13 @@ import { Routes, Route } from 'react-router-dom'
 import Login from './login/Login';
 import ProtectAuth from './hoc/ProtectAuth';
 
+export type Chat = {
+  number:string
+}
+
 function App() {
 
-  const [chats, setChats] = useState<any>([])
+  const [chats, setChats] = useState<Chat[]>([])
   const [activeChat, setActiveChat] = useState('')
 
   useEffect(() => {
