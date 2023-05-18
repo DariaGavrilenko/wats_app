@@ -1,0 +1,133 @@
+.avatar {
+    width: 40px;
+    height: 40px;
+}
+
+.headersIcon {
+    width: 24px;
+    height: 24px;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+}
+
+.mainHeader {
+    background-color: #202C33;
+    height: 59px;
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.contactsName {
+    color: #e9edef;
+    font-size: 16px;
+    margin: 0;
+    padding-left: 15px;
+}
+
+.inner {
+    overflow-y: auto;
+    margin: 12px 43px 12px 63px;
+    padding-right: 20px;
+    height: calc(100% - 59px - 85px);
+    box-sizing: 'border-box';
+    display: 'flex';
+    flex-direction: 'column';
+    justify-content: 'flex-end'
+}
+
+.mainFooter {
+    background-color: #202C33;
+    max-height: 150px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    padding: 5px 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.textarea {
+    width: 100%;
+    resize: none;
+    height: 42px;
+    box-sizing: border-box;
+    background-color: #2A3942;
+    border: 1px solid #2a3942;
+    border-radius: 8px;
+    padding: 9px 12px;
+    margin: 5px 8px;
+    color: #e9edef;
+}
+
+.messgeincomingContainer {
+    background-color: #202C33;
+    width: 60%;
+    border-radius: 8px;
+    padding: 6px 7px 8px 9px;
+    position: relative;
+    box-sizing: border-box;
+    color: #e9edef;
+    word-break: break-word;
+    margin-bottom: 12px;
+}
+
+.messgeincomingContainer::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-radius: 3px;
+    transform: rotate(135deg);
+    border-width: 0 20px 20px 0;
+    border-color: transparent #202C33 transparent transparent;
+}
+
+.messgeoutcomingContainer {
+    background-color: #176b5b;
+    width: 60%;
+    border-radius: 8px;
+    padding: 6px 7px 8px 9px;
+    position: relative;
+    box-sizing: border-box;
+    color: #e9edef;
+    word-break: break-word;
+    margin-left: auto;
+    margin-bottom: 12px;
+}
+
+.messgeoutcomingContainer::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-radius: 3px;
+    transform: rotate(135deg);
+    border-width: 0 20px 20px 0;
+    border-color: transparent #176b5b transparent transparent;
+}
+
+.statusImg{
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+}
+
+.dateContainer{
+display: flex;
+justify-content: end;
+align-items: end;
+    font-size: 11px;
+    color:#8696A0;
+}

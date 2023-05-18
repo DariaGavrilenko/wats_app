@@ -1,0 +1,141 @@
+.avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 110px;
+}
+
+.SideMenuContainer{
+    border-right: 1px solid rgba(134, 150, 160, 0.15);
+}
+
+.headersIcon {
+    width: 24px;
+    height: 24px;
+}
+
+.searchIcon {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    margin-left: 5px;
+}
+
+.sideMenuHeader {
+    background-color: #202C33;
+    height: 59px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 379px;
+    padding: 10px 16px;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 1000;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+}
+
+.input {
+    background-color: transparent;
+    border: none;
+    color: #e9edef;
+}
+
+.inputContainer {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 324px;
+    background-color: #202C33;
+    border-radius: 8px;
+    height: 35px;
+}
+
+.searchContainer {
+    height: 49px;
+    background-color: #111B21;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 378px;
+    padding-left: 12px;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 1000;
+    margin-top: 59px;
+}
+
+.contactsList{
+    width: 100%;
+    margin-top: 109px;
+    height: calc(100vh - 108px);
+    overflow-y: scroll;
+}
+
+.contactsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 378px;
+    height: 72px;
+}
+
+.contactsAvatar {
+    width: 49px;
+    height: 49px;
+    margin: 0 15px 0 13px;
+}
+
+.contactsName {
+    color: #e9edef;
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.contactsInfoContainer {
+    width: 301px;
+    padding-right: 15px;
+    box-sizing: border-box;
+    height: 100%;
+    text-align: start;
+    color: #e9edef;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid rgba(134, 150, 160, 0.15);
+}
+
+.contactsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contactsData {
+    font-size: 12px;
+    color: #8696A0;
+}
+
+.contactsMessage {
+    font-size: 14px;
+    color: #8696A0;
+    margin-top: 0;
+    line-height: 20px;
+}
+
+/* .contactsInfoContainer:last-child {
+    border-bottom: none;
+} */
+.underLine {
+    width: 347px;
+    height: 44px;
+    margin: 15px 16px;
+    padding: 10px 0 0;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(134, 150, 160, 0.15);
+    color: #8696A0;
+    font-size: 12px;
+}
