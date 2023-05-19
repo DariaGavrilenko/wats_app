@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/wats_app/static/css/main.9243b3ec.css",
-    "main.js": "/wats_app/static/js/main.aef5d504.js",
+    "main.css": "/wats_app/static/css/main.20f4ee5b.css",
+    "main.js": "/wats_app/static/js/main.12396262.js",
     "static/js/787.b354482b.chunk.js": "/wats_app/static/js/787.b354482b.chunk.js",
     "static/media/user.svg": "/wats_app/static/media/user.bb80d8f39bd9422e8fcd72805b8a9e7c.svg",
     "static/media/groopIcon.svg": "/wats_app/static/media/groopIcon.385dc339644dbc1529d1ad07a5475622.svg",
@@ -18,12 +18,12 @@
     "static/media/check.svg": "/wats_app/static/media/check.59067104fe40785e93f6cf6c5892ae14.svg",
     "static/media/filterIcon.svg": "/wats_app/static/media/filterIcon.16d6543c30e23db46d6e6da75a5c4a32.svg",
     "static/media/statusIcon.svg": "/wats_app/static/media/statusIcon.9b8afa36733409b2224c491271782e97.svg",
-    "main.9243b3ec.css.map": "/wats_app/static/css/main.9243b3ec.css.map",
-    "main.aef5d504.js.map": "/wats_app/static/js/main.aef5d504.js.map",
+    "main.20f4ee5b.css.map": "/wats_app/static/css/main.20f4ee5b.css.map",
+    "main.12396262.js.map": "/wats_app/static/js/main.12396262.js.map",
     "787.b354482b.chunk.js.map": "/wats_app/static/js/787.b354482b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9243b3ec.css",
-    "static/js/main.aef5d504.js"
+    "static/css/main.20f4ee5b.css",
+    "static/js/main.12396262.js"
   ]
 }
