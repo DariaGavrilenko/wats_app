@@ -1,13 +1,19 @@
-import './App.css';
-import SideMenu from './side-menu/SideMenu';
-import Main from './main/Main';
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
-import Login from './login/Login';
+
 import ProtectAuth from './hoc/ProtectAuth';
 
+import Main from './main/Main';
+import Login from './login/Login';
+import SideMenu from './side-menu/SideMenu';
+
+import './App.css';
+
+
 export type Chat = {
-  number:string
+  number: string
+  text?: string
+  date?:number 
 }
 
 function App() {
@@ -30,6 +36,10 @@ function App() {
     setChats([...chats, { number }])
   }
 
+  const getLastMessage = (text: string, date: number, id: string) => {
+    setChats(chats.map(chat => `${chat.number}@c.us` === id ? { ...chat, text, date } : chat))
+  }
+
   return (
     <div className="App">
       <Routes>
@@ -37,12 +47,12 @@ function App() {
           <ProtectAuth>
             <SideMenu createChat={createChat} chats={chats} setActiveChat={setActiveChat} />
             {activeChat ?
-             <Main activeChat={activeChat} /> 
-             :
+              <Main activeChat={activeChat} getLastMessage={getLastMessage} />
+              :
               <div className='default'>Enter a phone number to start a chat or select a phone from the list.</div>}
           </ProtectAuth>
         } />
-        <Route path='/login' element={<Login/>}/>
+        <Route path='/login' element={<Login />} />
       </Routes>
     </div>
   );

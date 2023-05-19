@@ -1,9 +1,9 @@
-import s from './SideMenu.module.css'
-
 import SideMenuHeader from './SideMenuHeader'
 import SideMenuSearch from './SideMenuSearch'
 import SideMenuContactItem from './SideMenuContactItem'
 import { Chat } from '../App'
+
+import s from './SideMenu.module.css'
 
 type SideMenuPropsType = {
     createChat: (number: string) => void,
@@ -17,11 +17,13 @@ const SideMenu = ({ createChat, chats, setActiveChat }: SideMenuPropsType) => {
             <SideMenuHeader />
             <SideMenuSearch createChat={createChat} />
             <div className={s.contactsList}>
-                {chats.map(chat => {
-                    return (
-                        <SideMenuContactItem key={chat.number} number={chat.number} setActiveChat={setActiveChat} />
-                    )
-                })}
+                {chats.map(chat => <SideMenuContactItem 
+                                        key={chat.number}
+                                        number={chat.number}
+                                        message={chat.text}
+                                        date={chat.date}
+                                        setActiveChat={setActiveChat} 
+                                    />)}
                 <div className={s.underLine}>Ваши личные сообщения защищены сквозным щифрованием</div>
             </div>
         </div>

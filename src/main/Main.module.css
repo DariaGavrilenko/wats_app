@@ -63,6 +63,7 @@
     padding: 9px 12px;
     margin: 5px 8px;
     color: #e9edef;
+    outline: none;
 }
 
 .messgeincomingContainer {
@@ -118,16 +119,22 @@
     border-color: transparent #176b5b transparent transparent;
 }
 
-.statusImg{
+.statusImg {
     width: 15px;
     height: 15px;
     margin-left: 5px;
 }
 
-.dateContainer{
-display: flex;
-justify-content: end;
-align-items: end;
+.dateContainer {
+    display: flex;
+    justify-content: end;
+    align-items: end;
     font-size: 11px;
-    color:#8696A0;
+    color: #8696A0;
+}
+
+.mainContainer {
+    flex: 1;
+    height: 100vh;
+    position: relative;
 }

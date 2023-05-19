@@ -1,15 +1,19 @@
-import s from './Main.module.css'
 
 import { useEffect, useState } from 'react'
-import { getApiTokenInstance, getDate, getIdInstance, getStatusImg } from '../assets/helpers/getData'
+
+import { getApiTokenInstance,
+         getDate,
+         getIdInstance, 
+         getStatusImg 
+        } from '../assets/helpers/getData'
 import MainHeader from './MainHeader'
 import MainFooter from './MainFooter'
 
-
-
+import s from './Main.module.css'
 
 type MainPropsType = {
     activeChat: string
+    getLastMessage: (text: string, date: number, id:string) => void
 }
 
 export type MessageType = {
@@ -21,14 +25,11 @@ export type MessageType = {
     timestamp?: number
     type?: 'outgoing' | 'incoming',
     typeMessage?: string
-    }
+}
 
-const Main = ({ activeChat }: MainPropsType) => {
+const Main = ({ activeChat, getLastMessage }: MainPropsType) => {
     const [loading, setLoading] = useState(true)
     const [messages, setMessages] = useState<MessageType[]>([])
-
-    console.log()
-    console.log()
 
     useEffect(() => {
         fetch(`https://api.green-api.com/waInstance${getIdInstance()}/GetChatHistory/${getApiTokenInstance()}`, {
@@ -48,9 +49,9 @@ const Main = ({ activeChat }: MainPropsType) => {
                 return data
             })
             .then(res => {
-                console.log(res)
                 setLoading(false)
                 res && setMessages(res.reverse())
+                getLastMessage(res[res.length - 1].textMessage, res[res.length - 1].timestamp, res[res.length - 1].chatId)
             })
     }, [activeChat])
 
@@ -73,8 +74,6 @@ const Main = ({ activeChat }: MainPropsType) => {
                         ?.includes('application/json');
 
                     const data = isJson ? await res.json() : null;
-
-                    console.log('data', data)
 
                     if (data) {
                         await fetch(`https://api.green-api.com/waInstance${getIdInstance()}/DeleteNotification/${getApiTokenInstance()}/${data.receiptId}`, {
@@ -99,17 +98,45 @@ const Main = ({ activeChat }: MainPropsType) => {
                             })
                         }
 
-                        if (data.body.typeWebhook === "incomingMessageReceived") {
-                            setMessages(prevState => {
+                
+
+                        if (data.body.typeWebhook === "incomingMessageReceived" && data.body.senderData.chatId === `${activeChat}@c.us`) {
+                            setMessages(prevState => {                     
+                                const updateMessage = prevState.some(message => message.idMessage === data.body.idMessage)
+
+                                if(updateMessage){
+                                    return prevState.map(message => {
+                                        if(message.idMessage === data.body.idMessage){
+                                            return {...message,
+                                                textMessage: data.body.messageData.textMessageData.textMessage,
+                                                type: "incoming",
+                                                chatId: data.body.senderData.chatId,
+                                                sendByApi: data.body.sendByApi,
+                                                statusMessage: data.body.status,
+                                                timestamp: data.body.timestamp,        
+                                            }
+                                        }
+
+                                        return message
+                                    })
+                                }
+
+               
                                 return [...prevState, {
+                                    idMessage: data.body.idMessage,
                                     textMessage: data.body.messageData.textMessageData.textMessage,
                                     type: "incoming",
-                                    chatId: data.body.chatId,
+                                    chatId: data.body.senderData.chatId,
                                     sendByApi: data.body.sendByApi,
                                     statusMessage: data.body.status,
                                     timestamp: data.body.timestamp,
                                 }]
                             })
+                            getLastMessage( data.body.messageData.textMessageData.textMessage, data.body.timestamp,  data.body.senderData.chatId)
+                        }
+
+                        if (data.body.typeWebhook === "incomingMessageReceived" && data.body.senderData.chatId !== `${activeChat}@c.us`) {
+                            getLastMessage( data.body.messageData.textMessageData.textMessage, data.body.timestamp,  data.body.senderData.chatId)
                         }
                     }
 
@@ -122,28 +149,35 @@ const Main = ({ activeChat }: MainPropsType) => {
 
         const newInterval = setInterval(() => {
             fetchData()
-        }, 5000)
+        }, 1000)
+
 
         return () => clearInterval(newInterval)
     }, [loading])
 
+    useEffect(()=>{
+        const block = document.getElementById("block");
+        if(block){
+            block.scrollTop = block.scrollHeight;
+        }
+    },[messages])
+
     return (
-        <div style={{ width: '100%', borderLeft: '1px solid rgba(134,150,160,0.4)', height: '100vh', position: 'relative' }}>
+        <div className={s.mainContainer}>
             <MainHeader activeChat={activeChat} />
-            <div className={s.inner}>
-                {messages.map((m: MessageType, index) => {
-                    return (
+            <div className={s.inner} id='block'>
+                {messages.map((m: MessageType, index) =>  (
                         <div key={index} className={m.type === 'outgoing' ? s.messgeoutcomingContainer : s.messgeincomingContainer} >
                             <span>{m.textMessage}</span>
                             <div className={s.dateContainer}>
-                            <span>{getDate(m.timestamp ? m.timestamp : Date.now()) }</span>
-                            {m.type === 'outgoing' && <img src={getStatusImg(m.statusMessage)} alt="" className={s.statusImg}/>}
+                                <span>{getDate(m.timestamp ? m.timestamp : Date.now())}</span>
+                                {m.type === 'outgoing' && <img src={getStatusImg(m.statusMessage)} alt="" className={s.statusImg} />}
                             </div>
                         </div>
                     )
-                })}
+                )}
             </div>
-            <MainFooter onSendMessage={handleSendMessage} activeChat={activeChat} />
+            <MainFooter getLastMessage={getLastMessage} onSendMessage={handleSendMessage} activeChat={activeChat} />
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import s from './Login.module.css'
 import { useNavigate } from 'react-router-dom'
 
+import s from './Login.module.css'
 
 const Login = () => {
     const [idInstance, setIdInstance] = useState('')

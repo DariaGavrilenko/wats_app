@@ -64,7 +64,6 @@
     padding-left: 12px;
     box-sizing: border-box;
     position: fixed;
-    z-index: 1000;
     margin-top: 59px;
 }
 
@@ -138,4 +137,22 @@
     border-top: 1px solid rgba(134, 150, 160, 0.15);
     color: #8696A0;
     font-size: 12px;
+}
+
+.logOutContainer{
+    position: absolute;
+    bottom: -59px;
+    right: 0;
+    width: 100%;
+    background-color: #202C33;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.logOutButton{
+    background-color: transparent;
+    border: none;
+    color: #e9edef;
+    font-size: large;
+    font-weight: bold;
 }

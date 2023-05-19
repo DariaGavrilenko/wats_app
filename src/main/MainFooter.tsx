@@ -1,18 +1,22 @@
-import s from './Main.module.css'
+import { useState } from 'react'
+
+import { getApiTokenInstance,  getIdInstance } from '../assets/helpers/getData'
 
 import microphoneIcon from '../assets/img/microphone.svg'
 import smileIcon from '../assets/img/smile.svg'
 import clipIcon from '../assets/img/clip.svg'
 import send from '../assets/img/send.svg'
-import { useState } from 'react'
-import { getApiTokenInstance,  getIdInstance } from '../assets/helpers/getData'
+
+import s from './Main.module.css'
+
 
 type PropsType = {
     activeChat: string
     onSendMessage: (message: string, idMessage: string) => void
+    getLastMessage:(text: string, date: number, id:string)=>void
 }
 
-const MainFooter = ({ onSendMessage, activeChat }: PropsType) => {
+const MainFooter = ({ onSendMessage, activeChat, getLastMessage }: PropsType) => {
     const [message, setMessage] = useState('')
 
     const onSendMessagePress = () => {
@@ -32,6 +36,7 @@ const MainFooter = ({ onSendMessage, activeChat }: PropsType) => {
                 return data
             })
             .then(({ idMessage }) => {
+                getLastMessage(message, Date.now(), `${activeChat}@c.us`)
                 onSendMessage(message, idMessage)
                 setMessage('')
             })

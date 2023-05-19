@@ -1,6 +1,8 @@
+import { useState, KeyboardEvent } from 'react'
+
 import filterIcon from '../assets/img/filterIcon.svg'
 import searchIcon from '../assets/img/searchIcon.svg'
-import { useState, KeyboardEvent } from 'react'
+
 import s from './SideMenu.module.css'
 
 type SideMenuSearchPropsType = {
@@ -9,6 +11,7 @@ type SideMenuSearchPropsType = {
 
 const SideMenuSearch = ({ createChat }: SideMenuSearchPropsType) => {
     const [number, setNumber] = useState('')
+    
     const onKeyHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.code === "Enter") {
             createChat(number)
