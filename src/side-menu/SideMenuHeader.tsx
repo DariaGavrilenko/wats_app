@@ -16,6 +16,7 @@ const SideMenuHeader = () => {
 
     const onLogOutHandler = () => {
         localStorage.removeItem('Green_API_Data')
+        localStorage.removeItem('chats')
         navigate('/login')
     }
 
